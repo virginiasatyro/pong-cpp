@@ -95,10 +95,37 @@ public:
                 break;
         }
     }
+    // friend to output 
+    friend ostream & operator << (ostream & o, Ball ball) // ????????
+    {
+        o << "Ball [" << ball._x << "," << ball._y << "][" << ball.direction << "]";
+        return o;
+    }
 
 };
 
 int main()
 {
+
+    Ball ball(0, 0);
+
+    cout << "Current position status: " << ball << endl; 
+
+    ball.randomDirection(); // direction change 
+
+    cout << "Position after random: " << ball << endl; 
+
+    ball.move();
+
+    cout << "Position after move: " << ball << endl; 
+
+    ball.randomDirection();
+
+    cout << "Position after random: " << ball << endl; 
+
+    ball.move();
+
+    cout << "Position after move: " << ball << endl; 
+
     return 0;
 }
