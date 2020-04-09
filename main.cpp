@@ -1,4 +1,6 @@
 #include <iostream>
+#include <time.h>
+// #include <conio.h>
 
 using namespace std;
 
@@ -31,7 +33,7 @@ public:
         _y = y_pos;
         direction = STOP;
     }
-    void Reset()
+    void reset()
     {
         _x = _x_original;
         _y = _y_original;
@@ -159,40 +161,61 @@ public:
     }
 };
 
+class GameManager
+{
+private:
+    int _width;
+    int _height;
+    int _score1;
+    int _score2;
+    char move_up1, move_down1;
+    char move_up2, move_down2;
+    bool quit;
+
+    Ball *ball; // define pointer - initialize the ball - create the ball object
+    Paddle *player1;
+    Paddle *player2;
+
+public:
+    GameManager(int w, int h)
+    {
+        srand(time(NULL));
+        quit = false;
+        move_up1 = 'w';
+        move_down1 = 's';
+        move_up2 = 'i';
+        move_down2 = 'k';
+        _score1 = _score2 = 0;
+        _width = w;
+        _height = h;
+        ball = new Ball(w/2, h/2); // place ball at the middle 
+        player1 = new Paddle(w/2, h/2 - 3);
+        player2 = new Paddle(w - 2, h/2 - 3);
+    }
+
+    ~GameManager()
+    {
+        delete ball;
+        delete player1;
+        delete player2;
+    }
+
+    void scoreUp(Paddle *player)
+    {
+        if(player == player2)
+            _score1++;
+        else if(player == player2)
+            _score2++;
+
+        ball->reset();
+        player1->reset();
+        player2->reset();
+    }
+};
+
 int main()
 {
 
-    Ball ball(0, 0);
-
-    cout << "Current position status: " << ball << endl; 
-
-    ball.randomDirection(); // direction change 
-
-    cout << "Position after random: " << ball << endl; 
-
-    ball.move();
-
-    cout << "Position after move: " << ball << endl; 
-
-    ball.randomDirection();
-
-    cout << "Position after random: " << ball << endl; 
-
-    ball.move();
-
-    cout << "Position after move: " << ball << endl; 
-
-    Paddle player1(0, 0);
-    Paddle player2(10, 0);
-
-    cout << "Player 1: " << player1 << endl;
-    cout << "Player 2: " << player2 << endl;
-
-    player1.moveUp();
-    player2.moveDown();
-
-    cout << "Player 1: " << player1 << endl;
-    cout << "Player 2: " << player2 << endl;
 
     return 0;
 }
