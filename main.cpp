@@ -188,9 +188,9 @@ public:
         _score1 = _score2 = 0;
         _width = w;
         _height = h;
-        ball = new Ball(w/2, h/2); // place ball at the middle 
-        player1 = new Paddle(w/2, h/2 - 3);
-        player2 = new Paddle(w - 2, h/2 - 3);
+        ball = new Ball(w / 2, h / 2); // place ball at the middle 
+        player1 = new Paddle(1, h / 2 - 3);
+        player2 = new Paddle(w - 2, h / 2 - 3);
     }
 
     ~GameManager()
@@ -211,11 +211,55 @@ public:
         player1->reset();
         player2->reset();
     }
+
+    void draw()
+    {
+        system("clear"); // cls (windows)
+
+        for(int i = 0; i < _width + 2; i++)
+            cout << "#";
+        cout << endl;
+
+        for(int i = 0; i < _height; i++)
+        {
+            for(int j = 0; j < _width; j++)
+            {
+                int ballX = ball->getX();
+                int ballY = ball->getY();
+                int player1X = player1->getX();
+                int player1Y = player1->getY();
+                int player2X = player2->getX();
+                int player2Y = player2->getY();
+
+                if(j == 0) // first column
+                    cout << "#";
+
+                if(ballX == j && ballY == i)
+                    cout << "o";
+                else if(player1X == j && player1Y == i)
+                    cout << "#"; // player 1 
+                else if(player2X == j && player2Y == i)
+                    cout << "#"; // player 2
+                else
+                    cout << " ";
+                
+
+                if(j == _width - 1)
+                    cout << "#";
+            }
+            cout << endl;
+        }
+
+        for(int i = 0; i < _width + 2; i++)
+            cout << "#";
+        cout << endl;
+    }
 };
 
 int main()
 {
-
+    GameManager game(40, 20);
+    game.draw();
 
     return 0;
 }
