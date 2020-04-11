@@ -11,6 +11,7 @@
 #include <iostream>
 
 #include "ball.h"
+#include "paddle.h"
 
 using namespace std;
 
