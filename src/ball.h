@@ -11,6 +11,8 @@
 #ifndef BALL_H
 #define BALL_H
 
+#include <iostream> 
+
 using namespace std;
 
 enum Direction {STOP      = 0, 

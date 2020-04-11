@@ -26,7 +26,7 @@ Ball::Ball(int x, int y) // constructor
 
 Ball::~Ball() // destructor 
 {
-    cout << "Ball destructor!" << endl;
+    // cout << "Ball destructor!" << endl;
 }
 
 // set functions
