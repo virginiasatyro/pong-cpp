@@ -13,6 +13,8 @@
 
 #include <iostream> 
 
+#define PADDLE_LENGHT 4 
+
 using namespace std;
 
 class Paddle

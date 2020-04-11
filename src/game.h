@@ -14,23 +14,41 @@
 #include <iostream>
 #include <time.h>
 
+#include <stdio.h>
+#include <termios.h>
+#include <unistd.h>
+#include <fcntl.h>
+
 #include "ball.h"
 #include "paddle.h"
 
-#define MOVE_UP_1   'w' || 'W'
-#define MOVE_DOWN_1 's' || 'S'
-#define MOVE_UP_2   'i' || 'I'
-#define MOVE_DOWN_2 'k' || 'K'
+// define keys to move paddle 
+#define MOVE_UP_1   'W'
+#define MOVE_DOWN_1 'S'
+#define MOVE_UP_2   'I'
+#define MOVE_DOWN_2 'K'
+#define QUIT 'Q'
+
+// define 'bricks'
+#define WALL_TOP    '▀'
+#define WALL_BOTTOM '▄'
+#define WALL_LEFT   '▋'
+#define WALL_RIGHT  '▐'
+
+#define BALL '●'
+
+#define PADDLE_LEFT  '▋'
+#define PADDLE_RIGHT '▐'
 
 using namespace std;
 
 class Game
 {
 private:
-    int _width;
-    int _height;
-    int _score_1;
-    int _score_2;
+    int _width;   // game width
+    int _height;  // game height
+    int _score_1; // score of player 1
+    int _score_2; // score of player 2
     bool _quit;
 
     Ball *ball;

@@ -321,13 +321,13 @@ public:
         if(_kbhit())
         {
             char current = getchar();
-            if(current == move_up1)
+            if(current == move_up1) // move 1 up
                 if(player1Y > 0)
                     player1->moveUp();
-            if(current == move_up2)
-                if(player1Y > 0)
+            if(current == move_up2) // move 2 up
+                if(player2Y > 0)
                     player2->moveUp();
-            if(current == move_down1)
+            if(current == move_down1) // move 1 down
                 if(player1Y + 4 < _height)
                     player1->moveDown();
             if(current == move_down2)
@@ -359,9 +359,9 @@ public:
 
         // right paddle
         for(int i = 0; i < 4; i++)
-        if(ballX == player2X - 1)
-            if(ballY == player2Y + i)
-                ball->changeDirection((Direction)(rand()%3 + 1)); // left, upleft or downleft
+            if(ballX == player2X - 1)
+                if(ballY == player2Y + i)
+                    ball->changeDirection((Direction)(rand()%3 + 1)); // left, upleft or downleft
 
         // bottom wall
         if(ballY == _height - 1) // hit the wall - dont get into it
