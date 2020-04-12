@@ -118,9 +118,70 @@ void Game::draw()
 {
     system("clear"); // clear prompt
 
-    // for(int i = 0; i < getWidth() + 2; i++)
-    //     cout << WALL_BOTTOM;
-    // cout << endl;
+    // draw bottom wall 
+    for(int i = 0; i < getWidth() + 2; i++)
+        cout << WALL_BOTTOM;
+    cout << endl;
+
+    for(int i = 0; i < getHeight(); i++)
+    {
+        for(int j = 0; j < getWidth(); j++)
+        {
+            // auxiliar variables 
+            int ball_x = ball->getX();
+            int ball_y = ball->getY();
+            int player1_x = player_1->getX();
+            int player1_y = player_1->getY();
+            int player2_x = player_2->getX();
+            int player2_y = player_2->getY();
+            // ---
+
+            // left column 
+            if(j == 0)
+                cout << WALL_LEFT;
+
+            if(ball_x == j && ball_y == i)
+                cout << BALL;
+
+            // player 1 - left 
+            else if(player1_x == j && player1_y == i)
+                cout << PADDLE_LEFT;
+            else if(player1_x == j && player1_y + 1 == i)
+                cout << PADDLE_LEFT;
+            else if(player1_x == j && player1_y + 2 == i)
+                cout << PADDLE_LEFT;
+            else if(player1_x == j && player1_y + 3 == i)
+                cout << PADDLE_LEFT;
+            // ---  
+
+            // player 2 - right 
+            else if(player2_x == j && player2_y == i)
+                cout << PADDLE_RIGHT;
+            else if(player2_x == j && player2_y + 1 == i)
+                cout << PADDLE_RIGHT;
+            else if(player2_x == j && player2_y + 2 == i)
+                cout << PADDLE_RIGHT;
+            else if(player2_x == j && player2_y + 3 == i)
+                cout << PADDLE_RIGHT;
+            // ---  
+
+            // blank spaces
+            else 
+                cout << " ";
+
+
+            if(j == getWidth() - 1)
+                cout << WALL_RIGHT;
+        }
+        cout << endl;
+    }
+
+    for(int i = 0; i < getWidth() + 2; i++)
+        cout << WALL_TOP;
+    cout << endl;
+
+    // scores 
+    cout << "\nPLAYER 1: " << getScore1() << "\t\tPLAYER 2: " << getScore2();
 }
 
 // input function
@@ -135,51 +196,30 @@ void Game::input()
     if(_kbhit())
     {
         char current_key = getchar();
-        toupper(current_key);
+        current_key = toupper(current_key); // key compared is upper
 
         // move paddle 1
-        // if(current_key == MOVE_UP_1)
-        //     if(player1_y > 0)
-        //         player1->moveUp();
-        // else if(current_key == MOVE_DOWN_1)
-        //     if(player1_y + 4 < getHeight())
-        //         player1->moveDown();
+        //if(!strcmp(current_key, MOVE_UP_1))
+        if(current_key == MOVE_UP_1)
+            if(player1_y > 0)
+                player_1->moveUp();
+        if(current_key == MOVE_DOWN_1)
+            if(player1_y + 4 < getHeight())
+                player_1->moveDown();
 
-        // // move paddle 2
-        // else if(current_key == MOVE_UP_2)
-        //     if(player2_y > 0)
-        //         player2->moveUp();
-        // else if(current_key == MOVE_DOWN_2)
-        //     if(player2_y + 4 < getHeight())
-        //         player2->moveDown();
-
-        switch (current_key)
-        {
-            case MOVE_UP_1:
-                if(player1_y > 0)
-                    player_1->moveUp();
-                break;
-            // case MOVE_DOWN_1:{
-            //     if(player1_y + 4 < getHeight())
-            //         player_1->moveDown();
-            //     }break;
-            // case MOVE_UP_2:{
-            //     if(player2_y > 0)
-            //         player_2->moveUp();
-            //     }break;
-            // case MOVE_DOWN_2:{
-            //     if(player2_y + 4 < getHeight())
-            //         player_2->moveDown();
-            //     }break;
-            case QUIT:
-                setQuit(true);
-                break;
-            default:
-                break;
-        }
+        // move paddle 2
+        if(current_key == MOVE_UP_2)
+            if(player2_y > 0)
+                player_2->moveUp();
+        if(current_key == MOVE_DOWN_2)
+            if(player2_y + 4 < getHeight())
+                player_2->moveDown();
 
         if(ball->getDirection() == STOP)
             ball->randomDirection();
+
+        if(current_key == getQuit())
+            setQuit(true);
     }
 }
 
@@ -220,12 +260,21 @@ void Game::logic()
         scoreUp(player_2); // 2 win - 1 lose 
     
     // right wall - ball hit right wall 
-    if(ball_x = getWidth() - 1)
+    if(ball_x == getWidth() - 1)
         scoreUp(player_1); // 1 win - 2 lose
 }
 
-    // run game
-    void run();
+// run game
+void Game::run()
+{
+    while (!getQuit())
+    {
+        draw();
+        input();
+        logic();
+        usleep(30000);
+    }
+}
 
 
 int _kbhit(void)

@@ -13,7 +13,8 @@
 
 using namespace std;
 
-Ball::Ball(int x, int y) // constructor
+// constructor
+Ball::Ball(int x, int y)
 {
     setXOriginal(x);
     setYOriginal(y);
@@ -24,9 +25,10 @@ Ball::Ball(int x, int y) // constructor
     setDirection(STOP);
 }
 
-Ball::~Ball() // destructor 
+// destructor 
+Ball::~Ball() 
 {
-    // cout << "Ball destructor!" << endl;
+    cout << "Ball destructor!" << endl;
 }
 
 // set functions
@@ -129,9 +131,3 @@ void Ball::move()
         break;
     }
 }
-
-//  ostream & operator << (ostream & o, Ball ball)
-//     {
-//         o << "Ball [" << ball.getX() << "," << ball.getY() << "][" << ball.getDirection() << "]";
-//         return o;
-//     }

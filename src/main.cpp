@@ -8,14 +8,14 @@
  * The main funciton of the game.
 ***********************************************************************************/
 
-#include <iostream>
-
-#include "ball.h"
-#include "paddle.h"
+#include "game.h"
 
 using namespace std;
 
 int main()
 {
+    Game game(40, 20);
+    game.run();
+
     return 0;
 }

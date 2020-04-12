@@ -13,6 +13,7 @@
 
 #include <iostream>
 #include <time.h>
+#include <string.h>
 
 #include <stdio.h>
 #include <termios.h>
@@ -23,22 +24,26 @@
 #include "paddle.h"
 
 // define keys to move paddle 
-#define MOVE_UP_1   'W'
-#define MOVE_DOWN_1 'S'
-#define MOVE_UP_2   'I'
-#define MOVE_DOWN_2 'K'
-#define QUIT 'Q'
+// #define MOVE_UP_1   'W'
+// #define MOVE_DOWN_1 "S"
+// #define MOVE_UP_2   "I"
+// #define MOVE_DOWN_2 "K"
+// #define QUIT "Q"
+const char MOVE_UP_1 = 'W';
+const char MOVE_DOWN_1 = 'S';
+const char MOVE_UP_2 = 'I';
+const char MOVE_DOWN_2 = 'K';
 
 // define 'bricks'
-#define WALL_TOP    '▀'
-#define WALL_BOTTOM '▄'
-#define WALL_LEFT   '▋'
-#define WALL_RIGHT  '▐'
+#define WALL_TOP    "▀"
+#define WALL_BOTTOM "▄"
+#define WALL_LEFT   "▋"
+#define WALL_RIGHT  "▐"
 
-#define BALL '●'
+#define BALL "●"
 
-#define PADDLE_LEFT  '▋'
-#define PADDLE_RIGHT '▐'
+#define PADDLE_LEFT  "▋"
+#define PADDLE_RIGHT "▐"
 
 using namespace std;
 
