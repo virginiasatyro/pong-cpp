@@ -15,20 +15,10 @@
 #include <time.h>
 #include <string.h>
 
-#include <stdio.h>
-#include <termios.h>
-#include <unistd.h>
-#include <fcntl.h>
-
 #include "ball.h"
+#include "input.h"
 #include "paddle.h"
 
-// define keys to move paddle 
-// #define MOVE_UP_1   'W'
-// #define MOVE_DOWN_1 "S"
-// #define MOVE_UP_2   "I"
-// #define MOVE_DOWN_2 "K"
-// #define QUIT "Q"
 const char MOVE_UP_1 = 'W';
 const char MOVE_DOWN_1 = 'S';
 const char MOVE_UP_2 = 'I';
